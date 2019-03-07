@@ -11,31 +11,9 @@ namespace PhoneMarket.Controllers
     {
         private PhonesDb db = new PhonesDb();
 
-        public ActionResult Index(int? MinPrice, int? MaxPrice, string Stor, string Sys)
+        public ActionResult Index(FilterModel filter)
         {
-            if(MinPrice == null && MaxPrice == null && Stor == null && Sys == null)
-                ViewBag.Phones = db.Phones;
-            else
-            {
-                var tmp = db.Phones.ToList();
-
-                if (MinPrice != null)
-                    tmp = tmp.Where(o => o.Price >= MinPrice).ToList();
-
-                if (MaxPrice != null)
-                    tmp = tmp.Where(o => o.Price <= MaxPrice).ToList();
-
-                if(Stor != null)
-                {
-                    int.TryParse(Stor, out int stor);
-                    tmp = tmp.Where(o => o.Storage == stor).ToList();
-                }
-
-                if(Sys != null)
-                    tmp = tmp.Where(o => o.System == Sys).ToList();
-
-                ViewBag.Phones = tmp;
-            }
+            ViewBag.Phones = Filter.GetFiltred(filter);
 
             return View();
         }
