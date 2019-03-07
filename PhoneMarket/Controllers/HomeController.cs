@@ -14,55 +14,25 @@ namespace PhoneMarket.Controllers
         public ActionResult Index(int? MinPrice, int? MaxPrice, string Stor, string Sys)
         {
             if(MinPrice == null && MaxPrice == null && Stor == null && Sys == null)
-            {
                 ViewBag.Phones = db.Phones;
-            }
             else
             {
                 var tmp = db.Phones.ToList();
 
-                if (MinPrice > MaxPrice)
-                    return Content("MinPrice > MaxPrice WTF? go back and try again");
-                else if ((MinPrice == null && MaxPrice != null) || (MinPrice != null && MaxPrice == null))
-                    return Content("Enter Correct Price");
-                else if (MinPrice == null && MaxPrice == null) ;
-                else
-                {
-                    for (int i = 0; i < tmp.Count; i++)
-                    {
-                        if (tmp[i].Price < MinPrice || tmp[i].Price > MaxPrice)
-                        {
-                            tmp.Remove(tmp[i]);
-                            i--;
-                        }
-                    }
-                }
+                if (MinPrice != null)
+                    tmp = tmp.Where(o => o.Price >= MinPrice).ToList();
+
+                if (MaxPrice != null)
+                    tmp = tmp.Where(o => o.Price <= MaxPrice).ToList();
 
                 if(Stor != null)
                 {
-                    for (int i = 0; i < tmp.Count; i++)
-                    {
-                        int.TryParse(Stor, out int stor);
-                        if (tmp[i].Storage != stor)
-                        {
-                            tmp.Remove(tmp[i]);
-                            i--;
-                        }
-                    }
+                    int.TryParse(Stor, out int stor);
+                    tmp = tmp.Where(o => o.Storage == stor).ToList();
                 }
 
-                if (Sys != null)
-                {
-                    for (int i = 0; i < tmp.Count; i++)
-                    {
-                        int.TryParse(Stor, out int stor);
-                        if (tmp[i].System != Sys)
-                        {
-                            tmp.Remove(tmp[i]);
-                            i--;
-                        }
-                    }
-                }
+                if(Sys != null)
+                    tmp = tmp.Where(o => o.System == Sys).ToList();
 
                 ViewBag.Phones = tmp;
             }
