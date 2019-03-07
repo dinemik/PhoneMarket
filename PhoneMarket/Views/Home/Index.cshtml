@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div>
+
+    <form action="Index" method="post">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+
+                <h5 class="card-title">Filter</h5>
+
+                <div class="input-group">
+
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="radio" name="Sys" value="android">
+                            <span>android</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="radio" name="Sys" value="ios">
+                            <span>ios</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="radio" name="Stor" value="128">
+                            <span>128</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="radio" name="Stor" value="64">
+                            <span>64</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="radio" name="Stor" value="32">
+                            <span>32</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                    <input name="MinPrice" type="number" class="form-control">
+
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                    <input name="MaxPrice" type="number" class="form-control">
+                </div>
+
+                <input type="submit" class="btn btn-success" />
+            </div>
+        </div>
+    </form>
+
+    @foreach (var phone in ViewBag.Phones)
+    {
+        <div class="card" style="width: 18rem;">
+            <a href="/home/More/@phone.Id"><img src="@phone.Img" class="card-img-top"></a>
+
+            <div class="card-body">
+                <h5 class="card-title">@phone.Firm  @phone.Model</h5>
+                <p class="card-text">Phone Price: @phone.Price $</p>
+            </div>
+        </div>
+    }
+</div>
