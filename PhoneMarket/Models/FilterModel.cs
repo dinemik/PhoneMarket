@@ -11,7 +11,7 @@ namespace PhoneMarket.Models
 
         public int? MaxPrice { get; set; }
 
-        public string Stor { get; set; }
+        public int? Stor { get; set; }
 
         public string Sys { get; set; }
     }
