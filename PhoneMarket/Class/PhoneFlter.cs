@@ -6,12 +6,12 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace PhoneMarket.Controllers
+namespace PhoneMarket.Class
 {
-    public class Filter
+    public class PhoneFlter
     {
         private static PhonesDb db;
-        static Filter()
+        static PhoneFlter()
         {
             db = new PhonesDb();
             db.Phones.Load();
@@ -21,7 +21,7 @@ namespace PhoneMarket.Controllers
         {
             IEnumerable<Phone> FilteredPhones = db.Phones.Local.ToBindingList();
 
-            if (filt.MinPrice != null && filt.MaxPrice != null && (filt.MinPrice < filt.MaxPrice))
+            if (filt.MinPrice != null && filt.MaxPrice != null && filt.MinPrice < filt.MaxPrice)
                 FilteredPhones = FilteredPhones.Where(o => o.Price >= filt.MinPrice && o.Price <= filt.MaxPrice);
 
             if (filt.Stor != null)

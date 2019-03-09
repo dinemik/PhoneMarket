@@ -1,4 +1,5 @@
-﻿using PhoneMarket.Models;
+﻿using PhoneMarket.Class;
+using PhoneMarket.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,14 +15,14 @@ namespace PhoneMarket.Controllers
 
         public ActionResult Index(FilterModel filter)
         {
-            ViewBag.Phones = Filter.GetFiltred(filter);
+            ViewBag.Phones = PhoneFlter.GetFiltred(filter);
 
             return View();
         }
 
         public ActionResult More(int? id)
         {
-            ViewBag.Phone = Filter.GetFiltredByID(id);
+            ViewBag.Phone = PhoneFlter.GetFiltredByID(id);
 
             return View();
         }
