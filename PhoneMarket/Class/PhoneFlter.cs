@@ -4,22 +4,18 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace PhoneMarket.Class
 {
-    public class PhoneFlter
+    public static class PhoneFlter
     {
-        private static PhonesDb db;
-        static PhoneFlter()
-        {
-            db = new PhonesDb();
-            db.Phones.Load();
-        }
+        private static PhonesDb db = new PhonesDb();
 
         public static IEnumerable<Phone> GetFiltred(FilterModel filt)
         {
-            IEnumerable<Phone> FilteredPhones = db.Phones.Local.ToBindingList();
+            IEnumerable<Phone> FilteredPhones = db.Phones;
 
             if (filt.MinPrice != null && filt.MaxPrice != null && filt.MinPrice < filt.MaxPrice)
                 FilteredPhones = FilteredPhones.Where(o => o.Price >= filt.MinPrice && o.Price <= filt.MaxPrice);
@@ -30,8 +26,7 @@ namespace PhoneMarket.Class
             if (filt.Sys != null)
                 FilteredPhones = FilteredPhones.Where(o => o.System == filt.Sys);
 
-            //if do not find anything  back to everyone. :)
-            return FilteredPhones.Count() == 0 ? db.Phones : FilteredPhones;
+            return FilteredPhones;
         }
 
         public static Phone GetFiltredByID(int? id) => db.Phones.FirstOrDefault(o => o.Id == id);
