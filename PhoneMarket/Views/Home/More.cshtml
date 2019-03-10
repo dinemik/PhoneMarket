@@ -1,21 +1,25 @@
-﻿@{
+﻿@model PhoneMarket.Models.Phone
+@{
     ViewBag.Title = "More";
 }
 
 <div>
     <div class="card" style="width: 18rem;">
-        <img src="@ViewBag.Phone.Img" class="card-img-top" alt="...">
+        <img src="@Model.Img" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">@ViewBag.Phone.Firm  @ViewBag.Phone.Model</h5>
-            <p class="card-text">Size: @ViewBag.Phone.Size</p>
-            <p class="card-text">Weight: @ViewBag.Phone.Weight</p>
-            <p class="card-text">ScreenSize: @ViewBag.Phone.ScreenSize</p>
-            <p class="card-text">Resolution: @ViewBag.Phone.Resolution</p>
-            <p class="card-text">Processor: @ViewBag.Phone.Processor</p>
-            <p class="card-text">Storage: @ViewBag.Phone.Storage</p>
-            <p class="card-text">System: @ViewBag.Phone.System</p>
-            <p class="card-text">Price: @ViewBag.Phone.Price</p>
-            <iframe style="margin-left: -18px; width: 281px" src="@ViewBag.Phone.Video"></iframe>
+            <h5 class="card-title">@Model.Firm  @Model.Model</h5>
+            <p class="card-text">Size: @Model.Size</p>
+            <p class="card-text">Weight: @Model.Weight</p>
+            <p class="card-text">ScreenSize: @Model.ScreenSize</p>
+            <p class="card-text">Resolution: @Model.Resolution</p>
+            <p class="card-text">Processor: @Model.Processor</p>
+            <p class="card-text">Storage: @Model.Storage</p>
+            <p class="card-text">System: @Model.System</p>
+            <p class="card-text">Price: @Model.Price</p>
+            @if (Model.Video != null)
+            {
+                <iframe style="margin-left: -18px; width: 281px" src="@Model.Video"></iframe>
+            }
         </div>
     </div>
 </div>

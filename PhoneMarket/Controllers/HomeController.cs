@@ -12,16 +12,8 @@ namespace PhoneMarket.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(FilterModel filter)
-        {
-            ViewBag.Phones = PhoneFlter.GetFiltred(filter);
-            return View();
-        }
+        public ActionResult Index(FilterModel filter) => View(PhoneFlter.GetFiltred(filter));
         
-        public ActionResult More(int? id)
-        {
-            ViewBag.Phone = PhoneFlter.GetFiltredByID(id);
-            return View();
-        }
+        public ActionResult More(int? id) => View(PhoneFlter.GetFiltredByID(id));
     }
 }
