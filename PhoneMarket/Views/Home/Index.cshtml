@@ -1,4 +1,7 @@
-﻿@model IEnumerable<PhoneMarket.Models.Phone>
+﻿@using PhoneMarket.Helpers;
+@using PhoneMarket.Models;
+
+@model IEnumerable<Phone>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -63,20 +66,11 @@
                     <input name="MaxPrice" type="number" class="form-control">
                 </div>
 
-                <input type="submit" class="btn btn-success"/>
+                <input type="submit" class="btn btn-success" />
             </div>
         </div>
     </form>
 
-    @foreach (var phone in Model)
-    {
-        <div class="card" style="width: 18rem;">
-            <a href="/home/More/@phone.Id"><img src="@phone.Img" class="card-img-top"></a>
+    @Html.CreatePhonesList(Model)
 
-            <div class="card-body">
-                <h5 class="card-title">@phone.Firm  @phone.Model</h5>
-                <p class="card-text">Phone Price: @phone.Price $</p>
-            </div>
-        </div>
-    }
 </div>

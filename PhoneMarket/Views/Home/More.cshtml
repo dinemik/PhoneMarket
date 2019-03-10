@@ -1,25 +1,13 @@
-﻿@model PhoneMarket.Models.Phone
+﻿@using PhoneMarket.Models;
+@using PhoneMarket.Helpers;
+
+@model Phone
 @{
     ViewBag.Title = "More";
 }
 
 <div>
-    <div class="card" style="width: 18rem;">
-        <img src="@Model.Img" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">@Model.Firm  @Model.Model</h5>
-            <p class="card-text">Size: @Model.Size</p>
-            <p class="card-text">Weight: @Model.Weight</p>
-            <p class="card-text">ScreenSize: @Model.ScreenSize</p>
-            <p class="card-text">Resolution: @Model.Resolution</p>
-            <p class="card-text">Processor: @Model.Processor</p>
-            <p class="card-text">Storage: @Model.Storage</p>
-            <p class="card-text">System: @Model.System</p>
-            <p class="card-text">Price: @Model.Price</p>
-            @if (Model.Video != null)
-            {
-                <iframe style="margin-left: -18px; width: 281px" src="@Model.Video"></iframe>
-            }
-        </div>
-    </div>
+   
+    @Html.CreatePhonesList(Model)
+
 </div>

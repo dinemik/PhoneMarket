@@ -133,6 +133,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\PhoneInformationHelper.cs" />
+    <Compile Include="Helpers\PhoneListHelper.cs" />
     <Compile Include="Models\FilterModel.cs" />
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\PhonesDb.cs" />
