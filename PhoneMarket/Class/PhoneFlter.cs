@@ -13,9 +13,9 @@ namespace PhoneMarket.Class
     {
         private static PhonesDb db = new PhonesDb();
 
-        public static IEnumerable<Phone> GetFiltred(FilterModel filt)
+        public static IQueryable<Phone> GetFiltred(FilterModel filt)
         {
-            IEnumerable<Phone> FilteredPhones = db.Phones;
+            IQueryable<Phone> FilteredPhones = db.Phones;
 
             if (filt.MinPrice != null && filt.MaxPrice != null && filt.MinPrice < filt.MaxPrice)
                 FilteredPhones = FilteredPhones.Where(o => o.Price >= filt.MinPrice && o.Price <= filt.MaxPrice);
