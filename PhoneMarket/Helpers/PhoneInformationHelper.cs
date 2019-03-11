@@ -83,7 +83,7 @@ namespace PhoneMarket.Helpers
                 CardDiv.InnerHtml += InfoDiv.ToString();
                 return new MvcHtmlString(CardDiv.ToString());
             }
-            return null;
+            return new MvcHtmlString("error: " + new HttpNotFoundResult().StatusCode.ToString() + " try again");
         }
     }
 }
