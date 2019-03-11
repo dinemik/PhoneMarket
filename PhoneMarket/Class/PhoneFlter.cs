@@ -29,6 +29,6 @@ namespace PhoneMarket.Class
             return FilteredPhones;
         }
 
-        public static Phone GetFiltredByID(int? id) => db.Phones.FirstOrDefault(o => o.Id == id);
+        public static Phone GetFiltredByID(int? id) => db.Phones.Find(id);
     }
 }
